@@ -23,6 +23,7 @@ files in python.
 More Info
 ---------
 Info about the java class file format at:
+
  * http://java.sun.com/docs/books/jvms/second_edition/html/ClassFile.doc.html
  * http://jcp.org/aboutJava/communityprocess/final/jsr202/index.html
 
@@ -504,6 +505,7 @@ This can be modified by using a text editor, or by using python code
 and then converted back to a classfile.
 
 This python code will:
+
  * decompile the class file
  * change it to iterate 3 times when printing 'hello world'
  * write the class file back
