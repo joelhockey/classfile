@@ -24,8 +24,8 @@ More Info
 ---------
 Info about the java class file format at:
 
- * http://java.sun.com/docs/books/jvms/second_edition/html/ClassFile.doc.html
- * http://jcp.org/aboutJava/communityprocess/final/jsr202/index.html
+* http://java.sun.com/docs/books/jvms/second_edition/html/ClassFile.doc.html
+* http://jcp.org/aboutJava/communityprocess/final/jsr202/index.html
 
 Supported Features
 ------------------
@@ -506,17 +506,16 @@ and then converted back to a classfile.
 
 This python code will:
 
- * decompile the class file
- * change it to iterate 3 times when printing 'hello world'
- * write the class file back
+* decompile the class file
+* change it to iterate 3 times when printing 'hello world'
+* write the class file back
 
-    >>> import classfile
-    >>> cf = classfile.decompile(open('Example.class').read())
-    #unhandled attribute StackMapTable
-    >>> m = [m for m in cf['14_method_info'] if m['00_method_name'].startswith('main')][0]
-    >>> c = [a for a in m['05_attribute_info'] if a['00_attribute_name'] == 'Code'][0]['06_code']
-    >>> c[0] = c[0].replace('iconst_2', 'iconst_3')
-    >>> classfile.compile(cf, 'Example.class')
+    import classfile
+    cf = classfile.decompile(open('Example.class').read())
+    m = [m for m in cf['14_method_info'] if m['00_method_name'].startswith('main')][0]
+    c = [a for a in m['05_attribute_info'] if a['00_attribute_name'] == 'Code'][0]['06_code']
+    c[0] = c[0].replace('iconst_2', 'iconst_3')
+    classfile.compile(cf, 'Example.class')
 
 Now when we run the class:
 
