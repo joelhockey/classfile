@@ -5,9 +5,7 @@ classfile.py is a java class file formatter / decompiler / compiler
 that transforms between binary java class files and a python object
 graph (dicts and arrays).
 
-classfile can be used as a module, and also has a main function that
-supports decompile and compile into text files showing a
-pretty-printed python object.
+classfile can be used as a python module or run as a script.
 
     usage:
       classfile.py -d <classfile>
