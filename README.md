@@ -511,12 +511,12 @@ This python code will:
 * write the class file back
 
 
-    import classfile
-    cf = classfile.decompile(open('Example.class').read())
-    m = [m for m in cf['14_method_info'] if m['00_method_name'].startswith('main')][0]
-    c = [a for a in m['05_attribute_info'] if a['00_attribute_name'] == 'Code'][0]['06_code']
-    c[0] = c[0].replace('iconst_2', 'iconst_3')
-    classfile.compile(cf, 'Example.class')
+    >>> import classfile
+    >>> cf = classfile.decompile(open('Example.class').read())
+    >>> m = [m for m in cf['14_method_info'] if m['00_method_name'].startswith('main')][0]
+    >>> c = [a for a in m['05_attribute_info'] if a['00_attribute_name'] == 'Code'][0]['06_code']
+    >>> c[0] = c[0].replace('iconst_2', 'iconst_3')
+    >>> classfile.compile(cf, 'Example.class')
 
 Now when we run the class:
 
