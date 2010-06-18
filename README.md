@@ -499,7 +499,7 @@ This will show the contents of the classfile as a python object:
 
                         
 This can be modified by using a text editor, or by using python code
-and then converted back to a classfile.
+and then converted back to a class file.
 
 This python code will decompile, modify the code to print 'hello world' 3 times, then write
 back the classfile.
