@@ -510,6 +510,7 @@ This python code will:
 * change it to iterate 3 times when printing 'hello world'
 * write the class file back
 
+
     import classfile
     cf = classfile.decompile(open('Example.class').read())
     m = [m for m in cf['14_method_info'] if m['00_method_name'].startswith('main')][0]
