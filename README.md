@@ -59,7 +59,6 @@ Now use classfile to decompile:
 
 This will show the contents of the classfile as a python object:
 
-    #unhandled attribute StackMapTable
     {'01_magic': 'cafebabe',
      '02_minor_version': 0,
      '03_major_version': 50,
