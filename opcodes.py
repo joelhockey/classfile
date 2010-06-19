@@ -2,27 +2,27 @@ import sys
 import pprint
 
 def constpool_comment(cf, code, args):
-  code = no_comment(cf, code, args) + ' '
-  att = cf['05_cp_info'][args[0]]
-  tag = att['01_tag']
-  if tag == 1: # CONSTANT_Utf8
-    code += att['03_bytes']
-  elif tag in (5,6): # CONSTANT_Long, CONSTANT_Double
-    code += str(att['00_value'])
-  elif tag == 7: # CONSTANT_Class
-    code += cf['05_cp_info'][att['02_name_index']]['03_bytes']
-  elif tag in (9, 10, 11): # CONSTANT_Fieldref, CONSTANT_Methodref, CONSTANT_Interfaceref
-    att = cf['05_cp_info'][att['03_name_and_type_index']]
-    code += cf['05_cp_info'][att['02_name_index']]['03_bytes'] + cf['05_cp_info'][att['03_descriptor_index']]['03_bytes']
-  elif tag == 12: # CONSTANT_NameAndType
-    code += cf['05_cp_info'][att['02_name_index']]['03_bytes'] + cf['05_cp_info'][att['03_descriptor_index']]['03_bytes']
-  else:
-    sys.stderr.write('unrecognised tag for comment %d\n' % tag)
-  return code
-  
+    code = no_comment(cf, code, args) + ' '
+    att = cf['05_cp_info'][args[0]]
+    tag = att['01_tag']
+    if tag == 1: # CONSTANT_Utf8
+        code += att['03_bytes']
+    elif tag in (5,6): # CONSTANT_Long, CONSTANT_Double
+        code += str(att['00_value'])
+    elif tag == 7: # CONSTANT_Class
+        code += cf['05_cp_info'][att['02_name_index']]['03_bytes']
+    elif tag in (9, 10, 11): # CONSTANT_Fieldref, CONSTANT_Methodref, CONSTANT_Interfaceref
+        att = cf['05_cp_info'][att['03_name_and_type_index']]
+        code += cf['05_cp_info'][att['02_name_index']]['03_bytes'] + cf['05_cp_info'][att['03_descriptor_index']]['03_bytes']
+    elif tag == 12: # CONSTANT_NameAndType
+        code += cf['05_cp_info'][att['02_name_index']]['03_bytes'] + cf['05_cp_info'][att['03_descriptor_index']]['03_bytes']
+    else:
+        sys.stderr.write('unrecognised tag for comment %d\n' % tag)
+    return code
+    
 def no_comment(cf, code, args):
-  code += ' ' * (30 - len(code)) + '#'
-  return code
+    code += ' ' * (30 - len(code)) + '#'
+    return code
 
 opcodes = [l.strip().split() for l in """00 nop 0x 0 no_comment
 01 aconst_null 0x 0 no_comment
