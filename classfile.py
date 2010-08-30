@@ -12,7 +12,7 @@ def addLineNums(codeatt, linenumatt):
     
     codes = []
     for line in codeatt['06_code']:
-        pc, ln, code = line.split(':')
+        pc, ln, code = line.split(':', 2)
         ln = pc2ln.get(int(pc), ln)
         codes.append('%s:%s:%s' % (pc, ln, code)) # replace '?:' with linenum
     codeatt['06_code'] = codes
@@ -49,7 +49,7 @@ def parseAttribute(att, info, cf):
             else:
                 args = struct.unpack(fmt, info[i+1:i+1+plen])
                 opsize += plen
-            code = '%4d:     ?:%s' % (i-8, mnem)
+            code = '%4d:   ?:%s' % (i-8, mnem)
             for arg in args:
                 code += ' ' + str(arg)
             att['06_code'].append(add_comment(cf, code, args))
