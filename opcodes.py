@@ -7,7 +7,7 @@ def constpool_comment(cf, code, args):
     tag = att['01_tag']
     if tag == 1: # CONSTANT_Utf8
         code += att['03_bytes']
-    elif tag in (5,6): # CONSTANT_Long, CONSTANT_Double
+    elif tag in (5,6,8): # CONSTANT_Long, CONSTANT_Double, CONSTANT_String
         code += str(att['00_value'])
     elif tag == 7: # CONSTANT_Class
         code += cf['05_cp_info'][att['02_name_index']]['03_bytes']
@@ -42,7 +42,7 @@ opcodes = [l.strip().split() for l in """00 nop 0x 0 no_comment
 15 dconst_1 0x 0 no_comment
 16 bipush B 1 no_comment
 17 sipush >h 2 no_comment
-18 ldc B 1 no_comment
+18 ldc B 1 constpool_comment
 19 ldc_w >h 2 constpool_comment
 20 ldc2_w >h 2 constpool_comment
 21 iload B 1 no_comment
@@ -209,7 +209,7 @@ opcodes = [l.strip().split() for l in """00 nop 0x 0 no_comment
 182 invokevirtual >h 2 constpool_comment
 183 invokespecial >h 2 constpool_comment
 184 invokestatic >h 2 constpool_comment
-185 invokeinterface >hbx 4 no_comment
+185 invokeinterface >hbx 4 constpool_comment
 186 xxxunusedxxx1 0x 0 no_comment
 187 new >h 2 constpool_comment
 188 newarray B 1 no_comment
