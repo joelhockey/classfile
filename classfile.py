@@ -190,7 +190,7 @@ def writeAttribute(att, linenum_cp_index=None):
         code = writeCode(att, linenum_cp_index)
         result += struct.pack('>i', len(code))
         result += code
-        result += struct.pack('>h', att['07_exception_table_length'])
+        result += struct.pack('>h', len(att['08_exception_table']))
         for et in att['08_exception_table']:
             result += struct.pack('>h', et['01_start_pc'])
             result += struct.pack('>h', et['02_end_pc'])
