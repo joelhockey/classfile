@@ -145,9 +145,8 @@ def parseAnnotation(an, info, cf):
         el = {}
         el['01_element_name_index'] = struct.unpack('>h', info[i:i+2])[0]
         el['00_name'] = cf['05_cp_info'][el['01_element_name_index']]['03_bytes']
-        el['02_tag'] = info[i+2]
-        el['03_element_value'] = {}
-        i += 2 + parseElementValue(el['03_element_value'], info[i+2:], cf)
+        el['02_element_value'] = {}
+        i += 2 + parseElementValue(el['02_element_value'], info[i+2:], cf)
         an['03_element_value_pairs'].append(el)
     return i
 
@@ -155,7 +154,10 @@ def parseElementValue(ev, info, cf):
         ev['01_tag'] = info[0]
         if ev['01_tag'] in 'BCDFIJSZs':
             ev['02_element_value_index'] = struct.unpack('>h', info[1:3])[0]
-            ev['02_element_value'] = cf['05_cp_info'][ev['02_element_value_index']]['03_bytes']
+            if ev['01_tag'] == 'I':
+                ev['02_element_value'] = cf['05_cp_info'][ev['02_element_value_index']]['02_bytes']
+            else:
+                ev['02_element_value'] = cf['05_cp_info'][ev['02_element_value_index']]['03_bytes']
             return 3
         elif ev['01_tag'] == 'e':
             ev['02_type_name_index'] = struct.unpack('>h', info[:2])[0]
